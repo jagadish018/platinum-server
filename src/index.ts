@@ -21,7 +21,9 @@ allRoutes.use(
 allRoutes.use('*', logger());
 allRoutes.route('/authentication', authenticationsRoute);
 
-allRoutes.get('/', (c) => c.text('Hello Hono!'));
+allRoutes.get('/', (c) => {
+  return c.text('Hello Hono!');
+});
 
 serve(allRoutes, ({ port }) => {
   console.log(`http//:localhost:${port}`);
