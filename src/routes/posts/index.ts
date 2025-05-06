@@ -24,6 +24,9 @@ postsRoute.post(
                     text,
                     authorId: user.id,
                 },
+                include: {
+                    author: true,
+                }
             }
         );
         return context.json(post,201);
@@ -36,6 +39,9 @@ postsRoute.get("/:postId", async (context) => {
     const post = await prismaClient.post.findUnique({
         where: {
             id: postId,
+        },
+        include: {
+            author: true,
         },
     });
     if (!post) {
