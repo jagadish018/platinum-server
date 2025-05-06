@@ -11,19 +11,16 @@ const allRoutes = new Hono();
 allRoutes.use(
   cors({
     origin: webClientUrl,
-    allowMethods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowHeaders: ['Content-Type', 'Authorization'],
-    exposeHeaders: ['Content-Length'],
+    allowMethods: ["GET", "POST", "PATCH", "PUT", "DELETE", "OPTIONS"],
+    allowHeaders: ["Authorization", "Content-Type"],
+    exposeHeaders: ["Content-Length"],
     credentials: true,
     maxAge: 600,
-  }),
+  })
 );
 allRoutes.use('*', logger());
-allRoutes.route('/authentication', authenticationsRoute);
+allRoutes.route("/authentication", authenticationsRoute);
 
-allRoutes.get('/', (c) => {
-  return c.text('Hello Hono!');
-});
 
 serve(allRoutes, ({ port }) => {
   console.log(`http//:localhost:${port}`);
