@@ -5,6 +5,10 @@ import { authenticationsRoute } from './routes/authentications';
 import { cors } from 'hono/cors';
 import { webClientUrl } from './utils/environment';
 import { postsRoute } from './routes/posts';
+import { feedRoute } from './routes/posts/feed';
+import { userRoute } from './routes/user';
+import { likesRoute } from './routes/likes';
+import { commentRoute } from './routes/comments';
 
 
 const allRoutes = new Hono();
@@ -22,6 +26,10 @@ allRoutes.use(
 allRoutes.use('*', logger());
 allRoutes.route("/authentication", authenticationsRoute);
 allRoutes.route("/posts", postsRoute);
+allRoutes.route("/feeds", feedRoute);
+allRoutes.route("/users", userRoute);
+allRoutes.route("/likes", likesRoute);
+allRoutes.route("/comments", commentRoute);
 
 serve(allRoutes, ({ port }) => {
   console.log(`Running at http//:localhost:${port}`);

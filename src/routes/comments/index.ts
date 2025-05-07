@@ -89,3 +89,15 @@ commentRoute.delete("/:commentId", async (context) => {
         return context.json(comment);
     }
 );
+
+//count of comment by based on postId
+commentRoute.get("/count/:postId", async (context) => {
+    const { postId } = context.req.param();
+    const count = await prismaClient.comment.count({
+        where: {
+            postId: postId,
+        },
+    });
+  return context.json(count);
+});
+  

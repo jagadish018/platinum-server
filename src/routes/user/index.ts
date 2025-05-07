@@ -12,6 +12,9 @@ userRoute.get("/me", async (context) => {
     },
     include: {
       posts: {
+        include: {
+          author: true,
+        },
         orderBy: {
           createdAt: "desc", // Sort posts by creation date in descending order
         },
@@ -29,7 +32,6 @@ userRoute.get("/me", async (context) => {
     user: getUser,
   });
 });
-
 
 userRoute.patch("/", async (context) => {
     const user = context.get("user");

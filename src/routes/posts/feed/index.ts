@@ -1,3 +1,4 @@
+import { HTTPException } from "hono/http-exception";
 import { prismaClient } from "../../../integration/prisma";
 import { createSecureRoute } from "../../middleware/session-middleware";
 
@@ -56,4 +57,21 @@ feedRoute.get("/search", async (context) => {
     });
 
   
+});
+
+feedRoute.delete("/:postId", async (context) => {
+  const { postId} = context.req.param();
+    const user = context.get("user");
+    const post = await prismaClient.post.delete({
+      where: {
+        id: postId,
+        authorId: user.id,
+      },
+      include: {
+        author: true,
+      },
+    });
+
+    return context.json(post);
+   
 });
