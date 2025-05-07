@@ -7,12 +7,12 @@ on:
 
 env:
   AZURE_REGION: centralindia
-  RESOURCE_GROUP: HackerNews
-  CONTAINER_APPS_ENVIRONMENT: HackerNewsContainerAppsEnvironment
-  LOG_ANALYTICS_WORKSPACE: HackerNewsLogAnalyticsWorkspace
-  ACR_REGISTRY: hackernews1si22is400.azurecr.io
-  ACR_REPOSITORY_NAME: hackernews
-  CONTAINER_APP_NAME: hackernews
+  RESOURCE_GROUP: PlatinumHackerNews
+  CONTAINER_APPS_ENVIRONMENT: PlatinumHackerNewsContainerAppsEnvironment
+  LOG_ANALYTICS_WORKSPACE: PlatinumHackerNewsLogAnalyticsWorkspace
+  ACR_REGISTRY: PlatinumHackerNews1si22is400.azurecr.io
+  ACR_REPOSITORY_NAME: platinumhackernews
+  CONTAINER_APP_NAME: platinumhackernews
   TARGET_PORT: 3000
 
 jobs:
@@ -27,9 +27,9 @@ jobs:
       - name: Azure Login
         uses: azure/login@v2
         with:
-          creds: ${{ secrets.AZURE_GITHUB_ACTIONS }}
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      # INFRA ENSURE BLOCKS
+      # INFRA ENSURE BLOCKSa
       - name: Check Resource Group exists
         run: |
           RG_EXISTS=$(az group show \
