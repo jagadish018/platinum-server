@@ -10,17 +10,20 @@ postsRoute.post(
   "/",
   zValidator(
     "json",
-    z.object({
-      text: z.string().min(1, "only non-empty strings are allowed in text"),
+      z.object({
+        title: z.string().min(1, "only non-empty strings are allowed in text"),
+        text: z.string().min(1, "only non-empty strings are allowed in text"),
+        
     })
   ),
     async (context) => {
         const user =context.get("user");
-        const { text } = context.req.valid("json");
+        const { title,text } = context.req.valid("json");
         
         const post = await prismaClient.post.create(
             {
                 data: {
+                    title,
                     text,
                     authorId: user.id,
                 },
