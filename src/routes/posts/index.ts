@@ -2,7 +2,6 @@ import { zValidator } from "@hono/zod-validator";
 import { createSecureRoute, createUnsecureRoute } from "../middleware/session-middleware";
 import { z } from "zod";
 import { prismaClient } from "../../integration/prisma";
-import { HTTPException } from "hono/http-exception";
 
 export const postsRoute = createSecureRoute();
 
