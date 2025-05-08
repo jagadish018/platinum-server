@@ -5,7 +5,7 @@ import { createSecureRoute } from "../../middleware/session-middleware";
 export const feedRoute = createSecureRoute();
 
 
-feedRoute.get("", async (context) => {
+feedRoute.get("/", async (context) => {
     const user = context.get("user");
     const latestPost = await prismaClient.post.findMany({
         include: {
