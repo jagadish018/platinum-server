@@ -35,21 +35,3 @@ postsRoute.post(
         return context.json(post,201);
   }
 );
-
-export const unSecurePostsRoute = createUnsecureRoute();
-
-unSecurePostsRoute.get("/:postId", async (context) => {
-  const { postId } = context.req.param();
-  const post = await prismaClient.post.findUnique({
-    where: {
-      id: postId,
-    },
-    include: {
-      author: true,
-    },
-  });
-  if (!post) {
-    throw new HTTPException(404);
-  }
-  return context.json(post);
-});

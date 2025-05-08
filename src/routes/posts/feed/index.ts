@@ -1,22 +1,33 @@
 import { HTTPException } from "hono/http-exception";
 import { prismaClient } from "../../../integration/prisma";
 import { createSecureRoute } from "../../middleware/session-middleware";
+import { getPagination } from "../../../extras/pagination";
 
 export const feedRoute = createSecureRoute();
 
 
 feedRoute.get("/", async (context) => {
-    const user = context.get("user");
-    const latestPost = await prismaClient.post.findMany({
-        include: {
-            author: true,
-        },
-        orderBy: {
-            createdAt: "desc",
-            },
-        take: 10,
-    });
-    return context.json(latestPost);
+  const user = context.get("user");
+
+  // Get pagination parameters
+  const { page, limit, skip } = getPagination(context);
+
+  const latestPosts = await prismaClient.post.findMany({
+    include: {
+      author: true,
+    },
+    orderBy: {
+      createdAt: "desc",
+    },
+    take: limit,
+    skip: skip,
+  });
+
+  return context.json({
+    page,
+    limit,
+    data: latestPosts,
+  });
 });
 
 feedRoute.get("/search", async (context) => {
