@@ -1,5 +1,5 @@
 import { betterAuth } from "better-auth";
-import {  serverUrl, webClientUrl } from "../../utils/environment";
+import { serverUrl, webClientUrl } from "../../utils/environment";
 import { prismaAdapter } from "better-auth/adapters/prisma";
 import { prismaClient } from "../prisma";
 
@@ -9,8 +9,14 @@ export const betterAuthClient = betterAuth({
   database: prismaAdapter(prismaClient, {
     provider: "postgresql",
   }),
-  trustedOrigins: [serverUrl,webClientUrl],
-
+  trustedOrigins: [serverUrl, webClientUrl],
+  advanced: {
+    defaultCookieAttributes: {
+      sameSite: "none",
+      secure: true,
+      partitioned: true,
+    },
+  },
   user: {
     modelName: "User",
   },
@@ -18,8 +24,8 @@ export const betterAuthClient = betterAuth({
     modelName: "Session",
     cookieCache: {
       enabled: true,
-      maxAge: 60 * 60 ,
-    }
+      maxAge: 60 * 60,
+    },
   },
   account: {
     modelName: "Account",
