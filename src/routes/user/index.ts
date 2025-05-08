@@ -33,7 +33,7 @@ userRoute.get("/me", async (context) => {
   });
 });
 
-userRoute.patch("/", async (context) => {
+userRoute.patch("/me", async (context) => {
     const user = context.get("user");
     const data = await context.req.json();
     const updateUser = await prismaClient.user.update({

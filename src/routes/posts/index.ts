@@ -1,5 +1,5 @@
 import { zValidator } from "@hono/zod-validator";
-import { createSecureRoute } from "../middleware/session-middleware";
+import { createSecureRoute, createUnsecureRoute } from "../middleware/session-middleware";
 import { z } from "zod";
 import { prismaClient } from "../../integration/prisma";
 import { HTTPException } from "hono/http-exception";
@@ -36,19 +36,20 @@ postsRoute.post(
   }
 );
 
+export const unSecurePostsRoute = createUnsecureRoute();
 
-postsRoute.get("/:postId", async (context) => {
-    const { postId } = context.req.param();
-    const post = await prismaClient.post.findUnique({
-        where: {
-            id: postId,
-        },
-        include: {
-            author: true,
-        },
-    });
-    if (!post) {
-       throw new HTTPException(404);
-    }
-    return context.json(post);
+unSecurePostsRoute.get("/:postId", async (context) => {
+  const { postId } = context.req.param();
+  const post = await prismaClient.post.findUnique({
+    where: {
+      id: postId,
+    },
+    include: {
+      author: true,
+    },
+  });
+  if (!post) {
+    throw new HTTPException(404);
+  }
+  return context.json(post);
 });

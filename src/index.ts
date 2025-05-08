@@ -4,7 +4,7 @@ import { logger } from 'hono/logger';
 import { authenticationsRoute } from './routes/authentications';
 import { cors } from 'hono/cors';
 import { webClientUrl } from './utils/environment';
-import { postsRoute } from './routes/posts';
+import { postsRoute, unSecurePostsRoute } from './routes/posts';
 import { feedRoute } from './routes/posts/feed';
 import { userRoute } from './routes/user';
 import { likesRoute } from './routes/likes';
@@ -26,6 +26,7 @@ allRoutes.use(
 allRoutes.use('*', logger());
 allRoutes.route("/authentication", authenticationsRoute);
 allRoutes.route("/posts", postsRoute);
+allRoutes.route("/posts", unSecurePostsRoute);
 allRoutes.route("/feeds", feedRoute);
 allRoutes.route("/users", userRoute);
 allRoutes.route("/likes", likesRoute);
