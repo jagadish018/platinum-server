@@ -25,8 +25,8 @@ allRoutes.use(
 );
 allRoutes.use('*', logger());
 allRoutes.route("/authentication", authenticationsRoute);
-allRoutes.route("/posts", postsRoute);
 allRoutes.route("/posts", unSecurePostsRoute);
+allRoutes.route("/posts", postsRoute);
 allRoutes.route("/feeds", feedRoute);
 allRoutes.route("/users", userRoute);
 allRoutes.route("/likes", likesRoute);
