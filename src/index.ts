@@ -32,6 +32,7 @@ allRoutes.use('*', logger());
 allRoutes.route("/authentication", authenticationsRoute);
 allRoutes.route("/posts", unSecurePostsRoute);
 allRoutes.route("/feeds", unSecureFeedRoute);
+
 allRoutes.route("/users-profile", unSecureUserRoute);
 allRoutes.route("/posts", postsRoute);
 allRoutes.route("/feeds", feedRoute);
