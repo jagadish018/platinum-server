@@ -1,4 +1,3 @@
-import { HTTPException } from "hono/http-exception";
 import { prismaClient } from "../../../integration/prisma";
 import { createSecureRoute } from "../../middleware/session-middleware";
 import { getPagination } from "../../../extras/pagination";

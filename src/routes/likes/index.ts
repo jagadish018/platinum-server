@@ -60,28 +60,41 @@ likesRoute.get("/:postId", async (context) => {
 });
 
 likesRoute.delete("/:postId", async (context) => {
-    const { postId } = context.req.param();
-    const user = context.get("user");
-    const post = await prismaClient.post.findUnique({
-        where: {
-            id: postId,
-        },
-        include: {
-            author: true,
-        },
-    });
-    if (!post) {
-        throw new HTTPException(404, {
-            message: "Post not found",
-        });
-    }
-    const like = await prismaClient.like.delete({
-        where: {
-            postId_userId: {
-                postId,
-                userId: user.id,
-            },
-        },
-    });
-    return context.json(like);
+  const { postId } = context.req.param();
+  const user = context.get("user");
+
+  const post = await prismaClient.post.findUnique({
+    where: { id: postId },
+    include: { author: true },
+  });
+
+  if (!post) {
+    throw new HTTPException(404, { message: "Post not found" });
+  }
+
+  const like = await prismaClient.like.findUnique({
+    where: {
+      postId_userId: {
+        postId,
+        userId: user.id,
+      },
+    },
+  });
+
+  if (!like) {
+    // No like to delete
+    return context.json({ message: "Like not found" }, 200);
+  }
+
+  await prismaClient.like.delete({
+    where: {
+      postId_userId: {
+        postId,
+        userId: user.id,
+      },
+    },
+  });
+
+  return context.json({ message: "Like removed" });
 });
+  
