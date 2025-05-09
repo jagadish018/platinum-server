@@ -42,7 +42,9 @@ userRoute.patch("/me", async (context) => {
         },
         data: {
             name: data.name,
-            about: data.about,
+          about: data.about,
+          image: data.image,
+            email: data.email,
             
         }
     });
