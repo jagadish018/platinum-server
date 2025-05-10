@@ -11,6 +11,9 @@ unSecureComment.get("/:postId", async (context) => {
     where: {
       postId: postId,
     },
+    orderBy: {
+      createdAt: "desc",
+    },
     include: {
       user: true,
     },

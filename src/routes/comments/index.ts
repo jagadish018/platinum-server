@@ -37,7 +37,10 @@ commentRoute.get("/:postId", async (context) =>
     const post = await prismaClient.comment.findMany({
         where: {
             postId: postId,
-        },
+      },
+      orderBy: {
+        createdAt: "desc",
+      },
         include: {
             user: true,
         },
