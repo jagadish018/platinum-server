@@ -40,7 +40,6 @@ export const betterAuthClient = betterAuth({
     google: {
       clientId: googleClientId as string,
       clientSecret:googleClientSecret as string ,
-      prompt: "select_account", // Optional: always show account selection
     },
   },
 });
