@@ -1,5 +1,5 @@
 import { betterAuth } from "better-auth";
-import { serverUrl, webClientUrl } from "../../utils/environment";
+import { googleClientId, googleClientSecret, serverUrl, webClientUrl } from "../../utils/environment";
 import { prismaAdapter } from "better-auth/adapters/prisma";
 import { prismaClient } from "../prisma";
 
@@ -35,5 +35,12 @@ export const betterAuthClient = betterAuth({
   },
   emailAndPassword: {
     enabled: true,
+  },
+  socialProviders: {
+    google: {
+      clientId: googleClientId as string,
+      clientSecret:googleClientSecret as string ,
+      prompt: "select_account", // Optional: always show account selection
+    },
   },
 });
