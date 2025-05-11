@@ -4,6 +4,6 @@ import { createUnsecureRoute } from '../middleware/session-middleware';
 export const authenticationsRoute = createUnsecureRoute();
 
  
-authenticationsRoute.use((c) => {
-    return betterAuthClient.handler(c.req.raw);
-})
+authenticationsRoute.all("/*", async (c) => {
+  return await betterAuthClient.handler(c.req.raw);
+});
