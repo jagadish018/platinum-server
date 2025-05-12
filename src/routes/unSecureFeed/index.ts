@@ -4,10 +4,7 @@ import { createUnsecureRoute } from "../middleware/session-middleware";
 
 export const unSecureFeedRoute = createUnsecureRoute();
 
-
-
-
-unSecureFeedRoute.get("/", async (context) => {
+unSecureFeedRoute.get("", async (context) => {
   // Get pagination parameters
   const { page, limit, skip } = getPagination(context);
 
@@ -21,7 +18,7 @@ unSecureFeedRoute.get("/", async (context) => {
     take: limit,
     skip: skip,
   });
-
+  console.log(latestPosts);
   return context.json({
     page,
     limit,
@@ -65,5 +62,3 @@ unSecureFeedRoute.get("/search", async (context) => {
     },
   });
 });
-
-

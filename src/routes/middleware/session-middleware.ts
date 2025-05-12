@@ -25,7 +25,9 @@ export const createSecureRoute = (): Hono<SecureSession> => {
 };
 
 export const authenticationMiddleware = createMiddleware<SecureSession>(
+  
   async (context, next) => {
+    console.log("Authentication middleware called");
     const session = await betterAuthClient.api.getSession({
       headers: context.req.raw.headers,
     });
@@ -36,7 +38,6 @@ export const authenticationMiddleware = createMiddleware<SecureSession>(
 
     context.set("user", session.user as User);
     context.set("session", session.session as Session);
-
     return await next();
   }
 );
