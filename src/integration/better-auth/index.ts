@@ -38,7 +38,6 @@ export const betterAuthClient = betterAuth({
   },
   socialProviders: {
     google: {
-      enabled: true,
       clientId: googleClientId as string,
       clientSecret: googleClientSecret as string,
     },
