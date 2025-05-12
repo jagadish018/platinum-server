@@ -17,7 +17,6 @@ import { unsecureLikes } from "./routes/unSecureLike";
 
 const allRoutes = new Hono();
 
-const apiRoutes = new Hono();
 
 allRoutes.use(
   cors({
@@ -29,20 +28,20 @@ allRoutes.use(
     maxAge: 600,
   })
 );
-allRoutes.route("/server", apiRoutes);
 
-apiRoutes.use("*", logger());
-apiRoutes.route("/authentication", authenticationsRoute);
-apiRoutes.route("/posts", unSecurePostsRoute);
-apiRoutes.route("/feeds", unSecureFeedRoute);
-apiRoutes.route("/comments", unSecureComment);
-apiRoutes.route("/public/likes", unsecureLikes);
-apiRoutes.route("/users-profile", unSecureUserRoute);
-apiRoutes.route("/posts", postsRoute);
-apiRoutes.route("/feeds", feedRoute);
-apiRoutes.route("/profile", userRoute);
-apiRoutes.route("/likes", likesRoute);
-apiRoutes.route("/comments", commentRoute);
+
+allRoutes.use("*", logger());
+allRoutes.route("/authentication", authenticationsRoute);
+allRoutes.route("/posts", unSecurePostsRoute);
+allRoutes.route("/feeds", unSecureFeedRoute);
+allRoutes.route("/comments", unSecureComment);
+allRoutes.route("/likes", unsecureLikes);
+allRoutes.route("/users-profile", unSecureUserRoute);
+allRoutes.route("/posts", postsRoute);
+allRoutes.route("/feeds", feedRoute);
+allRoutes.route("/profile", userRoute);
+allRoutes.route("/likes", likesRoute);
+allRoutes.route("/comments", commentRoute);
 
 serve(allRoutes, ({ port }) => {
   console.log(`Running at http//:localhost:${port}`);

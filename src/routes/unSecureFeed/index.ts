@@ -18,7 +18,7 @@ unSecureFeedRoute.get("", async (context) => {
     take: limit,
     skip: skip,
   });
-  console.log(latestPosts);
+ 
   return context.json({
     page,
     limit,

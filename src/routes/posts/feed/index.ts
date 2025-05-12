@@ -5,7 +5,7 @@ import { getPagination } from "../../../extras/pagination";
 export const feedRoute = createSecureRoute();
 
 
-feedRoute.get("/", async (context) => {
+feedRoute.get("", async (context) => {
   const user = context.get("user");
 
   // Get pagination parameters
