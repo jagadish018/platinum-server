@@ -14,6 +14,7 @@ import { unSecureFeedRoute } from "./routes/unSecureFeed";
 import { unSecureComment } from "./routes/unSecureComments";
 import { unSecureUserRoute } from "./routes/unSecureUser";
 import { unsecureLikes } from "./routes/unSecureLike";
+import { searchRoute } from "./routes/posts/search";
 
 const allRoutes = new Hono();
 
@@ -37,6 +38,7 @@ allRoutes.route("/unsecure/feeds", unSecureFeedRoute);
 allRoutes.route("/unsecure/comments", unSecureComment);
 allRoutes.route("/unsecure/likes", unsecureLikes);
 allRoutes.route("/users-profile", unSecureUserRoute);
+allRoutes.route("/feeds/search", searchRoute);
 allRoutes.route("/posts", postsRoute);
 allRoutes.route("/feeds", feedRoute);
 allRoutes.route("/profile", userRoute);
