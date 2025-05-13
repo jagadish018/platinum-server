@@ -18,10 +18,9 @@ export const betterAuthClient = betterAuth({
   }),
   trustedOrigins: [serverUrl, webClientUrl],
   advanced: {
-    defaultCookieAttributes: {
-      sameSite: "Lax",
-      secure: true,
-      partitioned: true,
+    crossSubDomainCookies: {
+      enabled: true,
+      domain: "insight360.info",
     },
   },
 
