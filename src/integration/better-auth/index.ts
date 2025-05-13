@@ -19,7 +19,7 @@ export const betterAuthClient = betterAuth({
   trustedOrigins: [serverUrl, webClientUrl],
   advanced: {
     defaultCookieAttributes: {
-      sameSite: "none",
+      sameSite: "Lax",
       secure: true,
       partitioned: true,
     },
