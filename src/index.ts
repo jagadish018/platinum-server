@@ -10,10 +10,7 @@ import { likesRoute } from "./routes/likes";
 import { commentRoute } from "./routes/comments";
 import { unSecurePostsRoute } from "./routes/UnsecurePost";
 import { postsRoute } from "./routes/posts";
-import { unSecureFeedRoute } from "./routes/unSecureFeed";
-import { unSecureComment } from "./routes/unSecureComments";
 import { unSecureUserRoute } from "./routes/unSecureUser";
-import { unsecureLikes } from "./routes/unSecureLike";
 import { searchRoute } from "./routes/posts/search";
 
 const allRoutes = new Hono();
@@ -34,9 +31,6 @@ allRoutes.use(
 allRoutes.use("*", logger());
 allRoutes.route("/authentication", authenticationsRoute);
 allRoutes.route("/posts", unSecurePostsRoute);
-allRoutes.route("/unsecure/feeds", unSecureFeedRoute);
-allRoutes.route("/unsecure/comments", unSecureComment);
-allRoutes.route("/unsecure/likes", unsecureLikes);
 allRoutes.route("/users-profile", unSecureUserRoute);
 allRoutes.route("/feeds/search", searchRoute);
 allRoutes.route("/posts", postsRoute);
