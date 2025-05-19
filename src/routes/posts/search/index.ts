@@ -49,7 +49,7 @@ const pc = new Pinecone({ apiKey: pineconeApiKey });
 const mistral = new Mistral({ apiKey: mistralApiKey });
 
 searchRoute.get("", async (context) => {
-  const { q: query, limit = "10", offset = "0" } = context.req.query();
+  const { q: query, limit = "5", offset = "0" } = context.req.query();
 
   // Query Pinecone
   const namespace = pc.index("platinum").namespace("posts");
@@ -95,7 +95,7 @@ ${contextText}
 `;
 
   const response = await mistral.chat.complete({
-    model: "mistral-large-latest",
+    model: "mistral-small-latest",
     messages: [
       {
         role: "user",
