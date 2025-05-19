@@ -24,6 +24,14 @@ export const betterAuthClient = betterAuth({
     },
   },
 
+  // advanced: {
+  //   defaultCookieAttributes: {
+  //     sameSite: "none",
+  //     secure: true,
+  //     partitioned: true,
+  //   },
+  // },
+
   user: {
     modelName: "User",
   },
