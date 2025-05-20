@@ -24,6 +24,7 @@ export const betterAuthClient = betterAuth({
     },
   },
 
+  
   // advanced: {
   //   defaultCookieAttributes: {
   //     sameSite: "none",
