@@ -1,7 +1,6 @@
 import { serve } from "@hono/node-server";
 import { Hono } from "hono";
 import { logger } from "hono/logger";
-import { authenticationsRoute } from "./routes/authentications";
 import { cors } from "hono/cors";
 import { webClientUrl } from "./utils/environment";
 import { feedRoute } from "./routes/posts/feed";
@@ -12,6 +11,7 @@ import { unSecurePostsRoute } from "./routes/UnsecurePost";
 import { postsRoute } from "./routes/posts";
 import { unSecureUserRoute } from "./routes/unSecureUser";
 import { searchRoute } from "./routes/posts/search";
+import { authenticationsRoute } from "./routes/authentications";
 
 const allRoutes = new Hono();
 
