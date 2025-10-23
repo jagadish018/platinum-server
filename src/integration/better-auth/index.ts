@@ -52,10 +52,5 @@ export const betterAuthClient = betterAuth({
   emailAndPassword: {
     enabled: true,
   },
-  socialProviders: {
-    google: {
-      clientId: googleClientId as string,
-      clientSecret: googleClientSecret as string,
-    },
-  },
+
 });
